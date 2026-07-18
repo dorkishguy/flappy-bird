@@ -1,6 +1,16 @@
 import pygame
 import sys
 import random
+import sys
+import os
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 GAME_WIDTH = 360
 GAME_HEIGHT = 640
@@ -26,12 +36,12 @@ class Pipe(pygame.Rect):
         self.img = img
         self.passed = False
 
-bg = pygame.image.load("flappybirdbg.png")
-bird_img = pygame.image.load("flappybird.png")
+bg = pygame.image.load(resource_path("assets/flappybirdbg.png"))
+bird_img = pygame.image.load(resource_path("assets/flappybird.png"))
 bird_img = pygame.transform.scale(bird_img, (bird_w, bird_h))
-top_pipe_image = pygame.image.load("toppipe.png")
+top_pipe_image = pygame.image.load(resource_path("assets/toppipe.png"))
 top_pipe_image = pygame.transform.scale(top_pipe_image, (pipe_width, pipe_height))
-bottom_pipe_image = pygame.image.load("bottompipe.png")
+bottom_pipe_image = pygame.image.load(resource_path("assets/bottompipe.png"))
 bottom_pipe_image = pygame.transform.scale(bottom_pipe_image, (pipe_width, pipe_height))
 
 bird = Bird(bird_img)
